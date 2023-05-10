@@ -24,3 +24,8 @@ It allows to add 3rd party packages to be installed in the live image.
 The installer is terminal based to the image can be installed practicly
 everywhere. It has very small disk/memory/cpu requirements. The size
 of the iso file is 383,6 MB.
+
+### debian-live-browser
+
+The purpose is to build a image eabling easy aand quick www browsing
+experience.
