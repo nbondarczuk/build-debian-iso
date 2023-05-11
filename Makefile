@@ -27,6 +27,12 @@ install:
 build: clean
 	sudo ./build.sh
 
+build-iso: clean
+	sudo ./build.sh iso
+
+build-hdd: clean
+	sudo ./build.sh hdd
+
 clean:
 	sudo lb clean --purge
 	sudo rm -Rf config .build build.log
