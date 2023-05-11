@@ -30,4 +30,7 @@ echo "user-setup sudo" > config/package-lists/recommends.list.chroot
 # as we need a network access
 echo "ifupdown isc-dhcp-client" >> config/package-lists/recommends.list.chroot
 
+# to overcome install without network access to repo
+echo "grub-pc" >> config/package-lists/recommends.list.chroot
+
 lb build 2>&1 | tee build.log

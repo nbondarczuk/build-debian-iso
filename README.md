@@ -29,3 +29,19 @@ of the iso file is 383,6 MB.
 
 The purpose is to build a image eabling easy aand quick www browsing
 experience.
+
+## Usage
+
+### The main make file allows to work on all images.
+
+### The main targets
+
+- build
+- clean
+- install
+
+### Specific builders
+
+A bulder directory is where the build target is executed. This script
+contains specific paramters and commands used to shape an image of live
+image.

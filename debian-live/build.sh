@@ -5,12 +5,11 @@
 # https://lecorbeausvault.wordpress.com/2021/01/10/quickly-build-a-custom-bootable-installable-debian-live-iso-with-live-build/
 #
 
-apt-get install -y live-build kvm
-
 lb clean --purge
 rm -Rf config .build build.log
 
-lb config -d bullseye \
+lb config -b hdd \
+   -d bullseye \
    --debian-installer live \
    --debian-installer-distribution bullseye \
    --debian-installer-gui false \
