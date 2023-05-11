@@ -5,16 +5,18 @@
 # https://lecorbeausvault.wordpress.com/2021/01/10/quickly-build-a-custom-bootable-installable-debian-live-iso-with-live-build/
 #
 
-apt-get install -y live-build kvm
+binary=${1:-hdd}
+distribution=${2:-bullseye}
 
 lb clean --purge
 rm -Rf config .build build.log
 
 echo "task-lxde-desktop iceweasel" >> config/package-lists/my.list.chroot
 
-lb config -d bullseye \
+lb config -b $binary \
+   -d $distribution \
    --debian-installer live \
-   --debian-installer-distribution bullseye \
+   --debian-installer-distribution $distribution \
    --debian-installer-gui false \
    --archive-areas "main contrib non-free" \
    --debootstrap-options "--variant=minbase"

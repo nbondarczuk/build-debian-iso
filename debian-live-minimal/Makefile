@@ -1,14 +1,6 @@
-build: clean
-	sudo ./build.sh
+BINARY = hdd
 
-clean:
-	sudo lb clean --purge
-	sudo rm -Rf config .build build.log
-	rm -f *~
+build-$(BINARY): clean
+	sudo ./build.sh $(BINARY)
 
-test-iso:
-	sudo kvm -cdrom *.iso
-
-test-img:
-	sudo kvm -hda *.img
-
+include ../Makefile

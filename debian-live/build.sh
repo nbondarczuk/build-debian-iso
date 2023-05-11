@@ -5,13 +5,16 @@
 # https://lecorbeausvault.wordpress.com/2021/01/10/quickly-build-a-custom-bootable-installable-debian-live-iso-with-live-build/
 #
 
+binary=${1:-hdd}
+distribution=${2:-bullseye}
+
 lb clean --purge
 rm -Rf config .build build.log
 
-lb config -b hdd \
-   -d bullseye \
+lb config -b $binary \
+   -d $distribution \
    --debian-installer live \
-   --debian-installer-distribution bullseye \
+   --debian-installer-distribution $distribution \
    --debian-installer-gui false \
    --archive-areas "main contrib non-free" \
    --debootstrap-options "--variant=minbase"
