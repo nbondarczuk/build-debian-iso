@@ -39,8 +39,8 @@ clean:
 	rm -f *~
 
 test-iso:
-	sudo kvm -cdrom *.iso
+	sudo ../bin/boot-debian-iso.sh $(IMAGE)
 
-test-img:
-	sudo kvm -hda *.img
+test-hdd:
+	sudo ../bin/boot-debian-img.sh $(IMAGE)
 

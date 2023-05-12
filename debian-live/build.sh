@@ -11,11 +11,12 @@ distribution=${2:-bullseye}
 lb clean --purge
 rm -Rf config .build build.log
 
-lb config -b $binary \
+lb config \
+   -b $binary \
    -d $distribution \
    --debian-installer live \
-   --debian-installer-distribution $distribution \
-   --debian-installer-gui false \
+   --debian-installer-distribution  $distribution \
+   --debian-installer-gui false  \
    --archive-areas "main contrib non-free" \
    --debootstrap-options "--variant=minbase"
 
