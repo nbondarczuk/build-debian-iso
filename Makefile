@@ -9,6 +9,8 @@ KVM_DEBIAN_PACKAGES = qemu-kvm \
 	virtinst \
 	libosinfo-bin
 
+ARCH = amd64
+
 build-all:
 	for dir in $(IMAGES); do \
 		$(MAKE) -C $$dir build; \
@@ -39,8 +41,13 @@ clean:
 	rm -f *~
 
 test-iso:
-	sudo ../bin/boot-debian-iso.sh $(IMAGE)
+	sudo ../bin/boot-debian-iso.sh $(ISO_IMAGE)
 
 test-hdd:
-	sudo ../bin/boot-debian-img.sh $(IMAGE)
+	sudo ../bin/boot-debian-img.sh $(ISO_IMAGE)
 
+image:
+	docker build -t $(IMAGE) .
+
+run:
+	docker run --privileged -u root -v ./mnt --rm $(IMAGE)
