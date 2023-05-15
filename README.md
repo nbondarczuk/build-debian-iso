@@ -13,6 +13,13 @@ customized in a special way with commands in build.sh script wchih launches
 live-build command lb wioth appropriate paramteres and specific configuration
 files.
 
+The docker is used to run the build.sh script.
+
+The input artefacts like packages to be installed in the image are loaded
+from /data volume mounted as local path of the runing image.
+
+The result image files are stored in volume /data.
+
 ## Usage
 
 ### Make file

@@ -50,4 +50,4 @@ image:
 	docker build -t $(IMAGE) .
 
 run:
-	docker run --privileged -u root -v ./mnt --rm $(IMAGE)
+	docker run --privileged -u root -v .:/data --rm $(IMAGE)

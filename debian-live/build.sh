@@ -21,3 +21,9 @@ lb config \
    --debootstrap-options "--variant=minbase"
 
 lb build 2>&1 | tee build.log
+
+# Store result file in /data mounted volume
+if [[ -d /data ]]
+then
+    cp *.${binary} /data
+fi

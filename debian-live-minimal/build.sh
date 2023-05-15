@@ -23,7 +23,10 @@ lb config -b $binary \
    --memtest none
 
 # 3rd party packages to be installed but no problem if none used
-cp *.deb config/packages.chroot/ || :
+if [[ -d /data ]]
+then
+    cp /data/*.deb config/packages.chroot/ || :
+fi
 
 # minimal set of packages as all were purged with --apt-recommends false
 echo "user-setup sudo" > config/package-lists/recommends.list.chroot
@@ -35,3 +38,9 @@ echo "ifupdown isc-dhcp-client" >> config/package-lists/recommends.list.chroot
 echo "grub-pc" >> config/package-lists/recommends.list.chroot
 
 lb build 2>&1 | tee build.log
+
+# Store result file in /data mounted volume
+if [[ -d /data ]]
+then
+    cp *.${binary} /data
+fi
