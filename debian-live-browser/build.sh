@@ -5,10 +5,10 @@
 # https://lecorbeausvault.wordpress.com/2021/01/10/quickly-build-a-custom-bootable-installable-debian-live-iso-with-live-build/
 #
 
-binary=${1:-hdd}
+binary=${1:-iso}
 distribution=${2:-bullseye}
 
-lb clean --purge
+lb clean
 rm -Rf config .build build.log
 
 echo "task-lxde-desktop iceweasel" >> config/package-lists/my.list.chroot
@@ -24,7 +24,7 @@ lb config -b $binary \
 lb build 2>&1 | tee build.log
 
 # Store result file in /data mounted volume
-if [[ -d /data ]]
+if [[ -d /results ]]
 then
-    cp *.${binary} /data
+    cp *.${binary} /results
 fi

@@ -5,11 +5,10 @@
 # https://live-team.pages.debian.net/live-manual/html/live-manual/examples.en.html#16.6 A minimal image for a 256MB USB key 
 #
 
-binary=${1:-hdd}
+binary=${1:-iso}
 distribution=${2:-bullseye}
 
-lb clean --purge
-rm -Rf config .build build.log
+lb clean
 
 lb config -b $binary \
    -d $distribution \
@@ -23,9 +22,9 @@ lb config -b $binary \
    --memtest none
 
 # 3rd party packages to be installed but no problem if none used
-if [[ -d /data ]]
+if [[ -d /results ]]
 then
-    cp /data/*.deb config/packages.chroot/ || :
+    cp /results/*.deb config/packages.chroot/ || :
 fi
 
 # minimal set of packages as all were purged with --apt-recommends false
@@ -40,7 +39,7 @@ echo "grub-pc" >> config/package-lists/recommends.list.chroot
 lb build 2>&1 | tee build.log
 
 # Store result file in /data mounted volume
-if [[ -d /data ]]
+if [[ -d /results ]]
 then
-    cp *.${binary} /data
+    cp *.${binary} /results
 fi

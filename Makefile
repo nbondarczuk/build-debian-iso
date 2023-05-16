@@ -23,7 +23,7 @@ clean-all:
 	rm -f *~ */*~
 
 install:
-	sudo apt-get install -y live-build
+	sudo apt-get install -y live-build fdisk
 	sudo apt install -y $(KVM_DEBIAN_PACKAGES)
 
 build: clean
@@ -35,7 +35,7 @@ build-iso: clean
 build-hdd: clean
 	sudo ./build.sh hdd
 
-clean:
+clean: clean-image
 	sudo lb clean --purge
 	sudo rm -Rf config .build build.log
 	rm -f *~
@@ -49,5 +49,8 @@ test-hdd:
 image:
 	docker build -t $(IMAGE) .
 
-run:
-	docker run --privileged -u root -v .:/data --rm $(IMAGE)
+run: image
+	docker run --privileged -u root -v .:/results --rm $(IMAGE)
+
+clean-image:
+	docker rmi $(IMAGE)
